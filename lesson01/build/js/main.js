@@ -4,5 +4,8 @@ console.log(username);
 let a = 12;
 let b = 6;
 let c = 2;
+let d = 'Hi';
 console.log(a / b);
 console.log(c * b);
+console.log(d);
+console.log('Hello');
