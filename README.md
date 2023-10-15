@@ -1,4 +1,5 @@
-#TypeScript Playground
+# TypeScript Playground
 
-##Description
+## Description
+
 This project revolves around everything TypeScript
