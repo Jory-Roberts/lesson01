@@ -1,15 +1,22 @@
-let username = 'Madi';
-console.log(username);
+//basic types
 
-let a: number = 12;
-let b: number = 6;
-let c: number = 2;
-let d: string = 'Hi';
+let myName: string = 'Amber';
+let meaningOfLife: number;
+let isLoading: boolean;
+let album: any;
 
-console.log(a / b);
+myName = 'Madi';
+meaningOfLife = 24;
+isLoading = true;
+album = 5150;
 
-console.log(c * b);
+const sum = (a: number, b: number) => a + b;
 
-console.log(d);
+console.log(sum(5, 2));
 
-console.log('Hello');
+//union types can be more than 2 data types
+let postId: string | number;
+let isActive: number | boolean | string;
+
+//regex -- TS will infer
+let re: RegExp = /\w+/g;
