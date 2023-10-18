@@ -1,88 +1,33 @@
-//type aliases
-type stringOrNumber = string | number;
+type One = string;
+type Two = string | number;
+type Three = 'hello';
 
-type stringOrNumberArray = (string | number)[];
-interface Guitarist {
-  name?: string;
-  active: boolean;
-  albums: stringOrNumberArray;
-}
+//convert to more or less specific
+let a: One = 'hello';
+let b = a as Two; //less specific type
+let c = a as Three; // more specific
 
-type UserId = stringOrNumber;
+let d = <One>'world';
+let e = <string | number>'world';
 
-// Literal Types
-let myName = 'Jory';
-
-let userName: 'Jory' | 'Amber';
-userName = 'Amber';
-
-//Functions
-const add = (a: number, b: number): Number => a + b;
-
-const logMsg = (message: any): void => console.log(message);
-
-logMsg('Hello');
-logMsg(add(2, 3));
-logMsg(add(2, 5));
-
-let subtract = function (c: number, d: number): number {
-  return c - d;
+const addOrConcat = (a: number, b: number, c: 'add' | 'concat'): number | string => {
+  if (c === 'add') return a + b;
+  return '' + a + b;
 };
 
-// type mathFunction = (a: number, b: number) => number;
-// interfaces are classes / functions type aliases
-interface mathFunction {
-  (a: number, b: number): number;
-}
+let myVal: string = addOrConcat(2, 2, 'concat') as string;
 
-let multiply: mathFunction = function (c, d) {
-  return c * d;
-};
+// Be careful! TS sees no problem here, but a string is returned
+let nextVal: number = addOrConcat(2, 2, 'concat') as number;
 
-logMsg(multiply(2, 2));
+//Double casting, avoid whenver possible overrules TS
+// 10 as string;
+10 as unknown as string;
 
-// optional parameters
-const addAll = (a: number, b: number, c?: number) => {
-  if (typeof c !== 'undefined') {
-    return a + b + c;
-  }
-  return a + b;
-};
+// The DOM
+const img = document.querySelector('img') as HTMLImageElement;
+const myImg = document.getElementById('#img')! as HTMLImageElement;
+const nextImg = <HTMLImageElement>document.getElementById('#img');
 
-const sumAll = (a: number, b: number, c: number = 2) => a + b + c;
-
-logMsg(addAll(2, 3, 2));
-logMsg(addAll(2, 3));
-logMsg(sumAll(2, 3));
-
-//Rest parameters
-const total = (...nums: number[]): number => {
-  return nums.reduce((prev, curr) => prev + curr);
-};
-
-logMsg(total(1, 2, 3, 4));
-
-//Never type: endless loops / throw errors
-const createError = (errorMsg: string) => {
-  throw new Error(errorMsg);
-};
-
-const inifinite = () => {
-  let i: number = 1;
-  while (true) {
-    i++;
-    if (i > 100) break; //without this, this is a never type
-  }
-};
-
-//custom type guard
-const isNumber = (value: any): boolean => {
-  return typeof value === 'number' ? true : false;
-};
-
-//use of the never type
-const createNumberOrString = (value: number | string): string => {
-  if (typeof value === 'string') return 'string';
-  if (typeof value === 'number') return 'number';
-  return createError('This should never happen');
-};
+img.src;
+myImg.src;
