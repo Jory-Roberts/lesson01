@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import ProductsContext from '../context/ProductsProvider';
-import { UseProductContextType } from '../context/CartProvider';
+import { UseProductsContextType } from '../context/ProductsProvider';
 
-const useProducts = (): UseProductContextType => {
+const useProducts = (): UseProductsContextType => {
   return useContext(ProductsContext);
 };
 
